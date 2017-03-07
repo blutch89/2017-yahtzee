@@ -1,0 +1,89 @@
+<div class="panel panel-primary connection-panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">Connexion</h3>
+    </div>
+    <div class="panel-body connection-panel-body">
+        <form name="connectionForm" ng-submit="processLoginForm()" novalidate>
+            <div class="alert alert-danger" role="alert" ng-show="loginErrorMsg">
+                {{ loginErrorMsg }}
+            </div>
+            <div class="form-group" ng-class="{'has-error': connectionForm._username.$touched && connectionForm._username.$invalid }">
+                <label for="username" class="control-label">Utilisateur</label>
+                <input type="text" id="username" name="_username" class="form-control"
+                       ng-model="loginFormData._username" required="required" ng-minlength="3" ng-maxlength="30" />
+                <span id="username-helpblock" class="help-block" ng-show="connectionForm._username.$touched && connectionForm._username.$invalid">
+                    Ce champs est requis et doit être compris entre 3 et 30 caractères.
+                </span>
+            </div>
+
+            <div class="form-group"  ng-class="{'has-error': connectionForm._password.$touched && connectionForm._password.$invalid }">
+                <label for="password" class="control-label">Mot de passe</label>
+                <input type="password" id="password" name="_password" class="form-control"
+                       ng-model="loginFormData._password" required="required" ng-minlength="4" ng-maxlength="100" />
+                <span id="password-helpblock" class="help-block" ng-show="connectionForm._password.$touched && connectionForm._password.$invalid">
+                    Ce champs est requis et doit être compris entre 4 et 100 caractères.
+                </span>
+            </div>
+
+            <div class="checkbox">
+                <label class="control-label">
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" ng-model="loginFormData._remember_me" /> Se souvenir de moi
+                </label>
+            </div>
+
+            <input type="submit" id="_submit" name="_submit" value="Se connecter" class="btn btn-default" ng-disabled="connectionForm.$invalid" />
+        </form>
+    </div>
+</div>
+
+<div class="panel panel-primary connection-panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">Inscription</h3>
+    </div>
+    <div class="panel-body connection-panel-body">
+        <form name="registrationForm" ng-submit="processRegistrationForm()" novalidate>
+            <div class="alert alert-danger" role="alert" ng-show="registrationErrorMsg">
+                {{ registrationErrorMsg }}
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': registrationForm.username.$touched && registrationForm.username.$invalid }">
+                <label for="username-r" class="control-label">Utilisateur</label>
+                <input type="text" id="username-r" name="username"  class="form-control"
+                       ng-model="registrationFormData.username" required="required" ng-minlength="3" ng-maxlength="30" />
+                <span id="username-r-helpblock" class="help-block" ng-show="registrationForm.username.$touched && registrationForm.username.$invalid">
+                    Ce champs est requis et doit être compris entre 3 et 30 caractères.
+                </span>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': registrationForm.first.$touched && registrationForm.first.$invalid }">
+                <label for="password-r" class="control-label">Mot de passe</label>
+                <input type="password" id="password-r" name="first"  class="form-control"
+                       ng-model="registrationFormData.first" required="required" ng-minlength="4" ng-maxlength="100" />
+                <span id="first-r-helpblock" class="help-block" ng-show="registrationForm.first.$touched && registrationForm.first.$invalid">
+                    Ce champs est requis et doit être compris entre 4 et 100 caractères.
+                </span>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': registrationForm.second.$touched && registrationForm.second.$invalid }">
+                <label for="confirm-r" class="control-label">Retapez le mot de passe</label>
+                <input type="password" id="confirm-r" name="second"  class="form-control"
+                       ng-model="registrationFormData.second" required="required" ng-minlength="4" ng-maxlength="100" />
+                <span id="second-r-helpblock" class="help-block" ng-show="registrationForm.second.$touched && registrationForm.second.$invalid">
+                    Ce champs est requis et doit être compris entre 4 et 100 caractères.
+                </span>
+            </div>
+
+            <input type="submit" id="_submit-r" name="_submit" value="S'inscrire" class="btn btn-default" ng-disabled="registrationForm.$invalid" />
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+

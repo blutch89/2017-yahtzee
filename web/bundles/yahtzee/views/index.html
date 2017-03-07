@@ -1,0 +1,42 @@
+<div id="game-container">
+	<div class="col-xs-12 col-sm-12">
+	    <div class="alert-message alert alert-dismissable alert-danger" role="alert" ng-hide="isAlertClosed">
+	    	<button type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="closeAlertMessage()">&times;</button>
+	        {{ alertMessage }}
+	    </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-sm-offset-6 col-lg-4 col-lg-offset-8">
+        <p class="text-right" ng-click="isCreateCollapsed = !isCreateCollapsed">
+            <span ng-show="isCreateCollapsed"><span class="glyphicon glyphicon-plus"></span> Créer une partie</span>
+            <span ng-show="!isCreateCollapsed"><span class="glyphicon glyphicon-chevron-up"></span> Masquer</span>
+        </p>
+        <div uib-collapse="isCreateCollapsed">
+            <div class="well well-lg games-create-game">
+                <form name="createGameForm" ng-submit="createGame()" novalidate>
+                    <div class="form-group" ng-class="{'has-error': createGameForm._name.$touched && createGameForm._name.$invalid }">
+                        <label for="name" class="control-label">Nom de la partie</label>
+                        <input type="text" id="name" name="_name" class="form-control"
+                               ng-model="createGameData.name" required="required" ng-minlength="3" ng-maxlength="20" />
+                        <span id="username-helpblock" class="help-block" ng-show="createGameForm._name.$touched && createGameForm._name.$invalid">
+                            Ce champs est requis et doit être compris entre 3 et 20 caractères.
+                        </span>
+                    </div>
+
+                    <input type="submit" id="_submit" name="_submit" value="Créer" class="btn btn-default" ng-disabled="createGameForm.$invalid" />
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <h1 class="text-success">Parties en cours</h1>
+    <game games-type="inProgress"></game>
+
+    <h1 class="text-primary">Parties disponibles</h1>
+    <game games-type="nonStarted"></game>
+
+    <h1 class="text-danger">Parties terminées</h1>
+    <game games-type="closed"></game>
+</div>

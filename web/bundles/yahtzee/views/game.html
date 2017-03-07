@@ -1,0 +1,44 @@
+<div id="game-container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+        	<div class="alert-message alert alert-dismissable alert-danger" role="alert" ng-hide="isAlertClosed">
+		    	<button type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="closeAlertMessage()">&times;</button>
+		        {{ alertMessage }}
+		    </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-7">
+            <div id="left-column" class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div id="dices-area">
+                        <img id='{{ dice.id }}' ng-src='{{ getImageLink(dice.value) }}' ng-class="{'dice-selected': dice.selected}"
+                            ng-repeat="dice in dices" ng-click="selectDice(dice)" after-render-dices />
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12">
+                	<div id="buttons-area" class="row">
+                		<div id="buttons-area-turn" class="col-xs-12 col-sm-12">
+	                        <span ng-class="{'text-danger' : isMyTurn == false, 'text-success' : isMyTurn == true}">
+	                        	<strong ng-bind="myTurnText"></strong>
+	                		</span>
+                		</div>
+                		<div class="col-xs-12 col-sm-12">
+	                        <input type="button" class="btn btn-default" ng-click="rollDices()" value="Lancer les dés" ng-disabled="rollDicesButton()" />
+	                        <input id="finishGameButton" type="button" class="btn btn-default" ng-click="finishGameButton()" value="Terminer la partie" ng-disabled="game['is-ended'] == true" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="right-column" class="col-xs-12 col-sm-12 col-md-5">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div id="score-area">
+                        <scores></scores>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

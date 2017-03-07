@@ -1,0 +1,3 @@
+userbundle_register:
+    path: /register
+    defaults: { _controller: UserBundle:Registration:register }

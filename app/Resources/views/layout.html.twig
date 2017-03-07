@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+
+    <title>Yahtzee</title>
+    <meta name="description" content="Jeu classique Yahtzee en ligne développé avec Symfony2, jQuery et AngularJS en responsive design." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <link rel="icon" type="image/png" href="{{ asset('bundles/yahtzee/images/favicon.png') }}" />
+
+    <meta property="og:title" content="Yahtzee" />
+    <meta property="og:description" content="Jeu classique Yahtzee en ligne développé avec Symfony2, jQuery et AngularJS en responsive design." />
+    <meta property="og:url" content="http://www.thomasgigon.ch/yahtzee" />
+    <meta property="og:image" content="{{ asset('bundles/yahtzee/images/favicon.png') }}" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/yahtzee/css/main.css') }}" />
+</head>
+<body ng-app="yahtzeeApp" ng-controller="MainController">
+    <div class="container">
+        <header class="row">
+        	<div id="connection-info" class="col-lg-6 text-left text-danger invisible">
+        		<strong><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> Connexion perdue</strong>
+        	</div>
+        	<div class="col-lg-6 text-right">
+	            <ul id="menu" class="list-unstyled list-inline">
+	                <li><a href="#/">Liste des parties</a></li>
+	                <!-- <li>Statistiques</li> -->
+	                <li ng-click="logout()">Déconnexion</li>
+	            </ul>
+	        </div>
+        </header>
+
+        <div ng-view=""></div>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-touch.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+    {% javascripts 'bundles/yahtzee/js/library/ui-bootstrap-tpls-2.1.3.min.js'
+    	'bundles/yahtzee/js/app.js'
+    	'bundles/yahtzee/js/services/utils-service.js'
+    	'bundles/yahtzee/js/services/user-service.js'
+    	'bundles/yahtzee/js/services/ajax-api-service.js'
+    	'bundles/yahtzee/js/services/authentification-service.js'
+    	'bundles/yahtzee/js/services/games-utils-service.js'
+    	'bundles/yahtzee/js/services/app-parameters-service.js'
+    	'bundles/yahtzee/js/directives/after-render-dices-directive.js'
+    	'bundles/yahtzee/js/directives/game-directive.js'
+    	'bundles/yahtzee/js/directives/scores-directive.js'
+    	'bundles/yahtzee/js/controllers/main-controller.js'
+    	'bundles/yahtzee/js/controllers/index-controller.js'
+    	'bundles/yahtzee/js/controllers/game-controller.js'
+    	'bundles/yahtzee/js/controllers/connection-controller.js' %}
+	    <script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+</body>
+</html>

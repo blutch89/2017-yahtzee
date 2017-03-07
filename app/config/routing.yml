@@ -1,0 +1,17 @@
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+yahtzee:
+    resource: "@YahtzeeBundle/Resources/config/routing.yml"
+    prefix:   /
+
+# Manage security
+fos_user_security:
+    resource:  "@FOSUserBundle/Resources/config/routing/security.xml"
+
+# Register User
+fos_user_register:
+    resource:  "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+

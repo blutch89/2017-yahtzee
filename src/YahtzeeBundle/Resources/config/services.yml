@@ -1,0 +1,30 @@
+services:
+#Login, inscription et logout
+    ucs.security.authentication_success_handler:
+        class: YahtzeeBundle\Handler\AuthenticationSuccessHandler
+    ucs.security.authentication_failure_handler:
+        class: YahtzeeBundle\Handler\AuthenticationFailureHandler
+    ucs.security.authentication_entry_point:
+        class: YahtzeeBundle\EntryPoint\AuthenticationEntryPoint
+    ucs.security.logout_success_handler:
+        class: YahtzeeBundle\Handler\LogoutSuccessHandler
+
+#Repositories
+    yahtzee.repositories.game:
+        class: Doctrine\ORM\EntityRepository
+        factory: ["@doctrine.orm.entity_manager", getRepository]
+        arguments:
+            - YahtzeeBundle\Entity\Game
+
+#Autre
+    yahtzee.response_formatter:
+        class: YahtzeeBundle\Services\ResponseFormatter
+        arguments:
+            - "@yahtzee.repositories.game"
+            - "@yahtzee.users.last_contact"
+
+    yahtzee.users.last_contact:
+        class: YahtzeeBundle\Services\LastContact
+        arguments:
+            - "@fos_user.user_manager"
+            - "@security.token_storage"

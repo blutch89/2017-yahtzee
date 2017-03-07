@@ -1,0 +1,36 @@
+<div id="games-list" class="row">
+    <div class="col-xs-12 col-sm-6 col-lg-4" ng-repeat="game in $parent.games[gamesType]">
+        <div class="games-panel-game panel {{ game.panelClass }}">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3 text-left">id : <span ng-bind="game.id"></span></div>
+                    <div class="col-xs-9 text-right">nom : <span ng-bind="game.name"></span></div>
+                </div>
+            </div>
+            <div class="games-panel-game-body panel-body">
+                <div class="games-player-area">
+                    <div class="games-player" ng-repeat="player in game.players">
+                        <span ng-bind="player.username"></span> :
+                        <small ng-class="{'text-danger' : ! player['is_online'], 'text-success' : player['is_online']}"
+                               ng-show="game.status != 2">{{ player['is_online'] ? 'En ligne' : 'Hors ligne' }}</small>
+                        <span ng-show="game.status == 2" ng-bind="player.score"></span>
+                    </div>
+                </div>
+                <p class="text-center" ng-class="{'text-danger' : game.isMyTurn == false, 'text-success' : game.isMyTurn == true}" ng-show="game.myTurnText">
+                    <strong ng-bind="game.myTurnText"></strong>
+                </p>
+
+                <input class="btn btn-default center-block" type="button" value="Commencer"
+                       ng-click="$parent.beginGame(game)" ng-show="game.buttonType == 0" />
+                <input class="btn btn-default center-block" type="button" value="{{ game.buttonRegisterText }}"
+                       ng-click="$parent.registerToGame(game)" ng-show="game.buttonType == 1" ng-disabled="game.buttonDisabled" />
+                <input class="btn btn-default center-block" type="button" value="Ouvrir"
+                       ng-click="$parent.openGame(game)" ng-show="game.buttonType == 2" />
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12" ng-show="$parent.games[gamesType][0] == null">
+        <p>Aucune partie</p>
+    </div>
+</div>

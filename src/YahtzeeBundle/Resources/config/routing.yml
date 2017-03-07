@@ -1,0 +1,41 @@
+yahtzee_homepage:
+    path:     /
+    defaults: { _controller: YahtzeeBundle:Default:index }
+
+#Games
+yahtzee_all_games:
+    path: /frontend-api/games/get
+    defaults: { _controller: YahtzeeBundle:Games:getGames }
+
+yahtzee_create_game:
+    path: /frontend-api/games/create
+    defaults: { _controller: YahtzeeBundle:Games:createGame }
+
+yahtzee_register_game:
+    path: /frontend-api/games/register
+    defaults: { _controller: YahtzeeBundle:Games:registerToGame }
+
+yahtzee_begin_game:
+    path: /frontend-api/games/begin
+    defaults: { _controller: YahtzeeBundle:Games:beginGame }
+
+#Game
+yahtzee_get_game_informations:
+    path: /frontend-api/game/get/{id}
+    defaults: { _controller: YahtzeeBundle:Game:getGame}
+    requirements:
+        id: \d+
+
+yahtzee_select_combination:
+    path: /frontend-api/game/select-combination/{gameId}/{userId}/{entry}/{value}
+    defaults: { _controller: YahtzeeBundle:Game:selectCombination}
+    requirements:
+        gameId: \d+
+        userId: \d+
+        value: \d+
+
+yahtzee_finish_game:
+    path: /frontend-api/game/finish-game/{gameId}
+    defaults: { _controller: YahtzeeBundle:Game:finishGame}
+    requirements:
+        gameId: \d+

@@ -1,0 +1,32 @@
+<table id="score-table">
+    <tr class="score-bottom-border">
+        <th></th>
+        <th class="score-left-border" ng-class="{'text-danger': ! players[index]['is_online'], 'text-success': players[index]['is_online'], 'score-winner': players[index]['winner']}"
+        	ng-repeat="(index, value) in players" ng-bind="players[index]['username']"></th>
+    </tr>
+
+    <tr ng-repeat="(valueEn, valueFr) in entries.first">
+        <td>{{ valueFr }}</td>
+        <td class="score-left-border" ng-click="selectCombination(index, valueEn)" ng-class="{'score-combination-cell': getScoreClass(index, valueEn), 'score-winner': players[index]['winner']}"
+        	ng-repeat="(index, value) in players" ng-bind="getScore(index, valueEn)"></td>
+    </tr>
+
+    <tr class="score-top-border">
+        <td>Somme</td>
+        <td class="score-left-border" ng-class="{'score-winner': players[index]['winner']}" ng-repeat="(index, value) in players" ng-bind="getScore(index, 'sum')"></td>
+    </tr>
+    <tr class="score-bottom-border">
+        <td>Bonus</td>
+        <td class="score-left-border" ng-class="{'score-winner': players[index]['winner']}" ng-repeat="(index, value) in players" ng-bind="getScore(index, 'bonus')"></td>
+    </tr>
+
+    <tr ng-repeat="(valueEn, valueFr) in entries.second">
+        <td>{{ valueFr }}</td>
+        <td class="score-left-border" ng-click="selectCombination(index, valueEn)" ng-class="{'score-combination-cell': getScoreClass(index, valueEn), 'score-winner': players[index]['winner']}" ng-repeat="(index, value) in players" ng-bind="getScore(index, valueEn)"></td>
+    </tr>
+
+    <tr class="score-bottom-border score-top-border">
+        <td><strong>Score total</strong></td>
+        <td class="score-left-border" ng-class="{'score-winner': players[index]['winner']}" ng-repeat="(index, value) in players" ng-bind="players[index]['score']['total-score']"></td>
+    </tr>
+</table>
